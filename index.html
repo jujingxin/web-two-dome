@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="index.js"></script>
+	 <link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div class="notice" id="notice">
+		<div class="boxn" id="boxn">
+			<div class="pic"><img src="images/a15.png"/></div>
+			<div class="boxm">
+				<div class="no" id="no">[温馨提示]最近有不少不法分子在网上骗人，请大家注意!!!</div>
+			</div>
+		</div>
+	</div>
+	<div class="box" id="box">
+		<div class="slider" id="slider">
+			<div class="slide"><img src="images/b5.png"/></div>
+			<div class="slide"><img src="images/b1.png"/></div>
+			<div class="slide"><img src="images/b2.png"/></div>
+			<div class="slide"><img src="images/b3.png"/></div>
+			<div class="slide"><img src="images/b4.png"/></div>
+			<div class="slide"><img src="images/b5.png"/></div>
+			<div class="slide"><img src="images/b1.png"/></div>
+		</div>
+		<span id="left"><</span>
+		<span id="right">></span>
+		<ul class="nav" id="nav">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	var no = document.getElementById("no");
+	var box = document.getElementById("box");
+	var navList = document.getElementById("nav").children;
+	var silder = document.getElementById("silder");
+	var left = document.getElementById("left");
+	var right = document.getElementById("right");
+	var index = 1;
+	var timer;
+	var isMoving = false;
+	/* 匀速运动文字*/
+	setInterval(function(){
+			var now = parseInt(getStyle(no,'left'));
+			no.style.left = now - 1 + "px";
+			if(now == -300){
+				no.style.left = "1000px";
+			}
+		}, 20)
+
+	/*轮播下一张图片*/
+	function next(){
+		if(isMoving){
+			return ;
+		}
+		isMoving = true;
+		++index;
+		navmove()
+		animate(slider,{left:-1200*index},function(){
+			if(index == 6){
+				slider.style.left="-1200px";
+				index=1;
+			}
+			isMoving = false;
+		});
+	}
+
+	function prev(){
+		if(isMoving){
+			return ;
+		}
+		isMoving = true;
+		index--;
+		navmove()
+		animate(slider,{left:-1200*index},function(){
+			if(index == 0){
+				slider.style.left = "-6000px";
+				index=5;
+			}
+			isMoving = false;
+		});
+	}
+	
+	/*鼠标滑入box，定时器消失*/
+	box.onmouseover = function(){
+		clearInterval(timer);
+		animate(left,{opacity:50});
+		animate(right,{opacity:50});
+	}
+
+	/*鼠标滑出box，重新设置定时器*/
+	box.onmouseout = function(){
+		animate(left,{opacity:0});
+		animate(right,{opacity:0});
+		timer = setInterval(next, 3000);
+	}
+
+	/*小箭头点击切换图片*/
+	right.onclick = next;
+	left.onclick = prev;
+
+	/*图下面的小按钮*/
+	for(var i=0;i<navList.length;++i){
+		navList[i].inde= i;
+		navList[i].onclick= function(){
+			index=this.inde+1;
+			navmove();
+			animate(slider,{left:-1200*index});
+		}
+	}
+	
+	/*小按钮换颜色*/
+	function navmove(){
+		for(var i=0;i<navList.length;++i){
+			navList[i].className = "";
+		}
+		if(index > 5){
+			navList[0].className = "active";
+		}
+		else if(index <=0){
+			navList[4].className = "active";
+		}
+		else{
+			navList[index-1].className = "active";
+		}
+	}
+	timer = setInterval(next,3000);
+
+
+</script>
+</html>

@@ -1,0 +1,94 @@
+*{
+	padding:0;
+	margin:0;
+}
+ul,ol,li{
+	list-style:none;
+}
+.notice{
+	height: 23px;
+	margin: 0 auto;
+	background-color: #ccc;
+}
+.boxn{
+	width: 1000px;
+	height: 23px;
+	margin: 0 auto;
+	/* position: relative; */
+}
+.boxm{
+	width: 980px;
+	height: 23px;
+	position: relative;
+	overflow: hidden;
+}
+.pic{
+	padding-top: 5px;
+	width: 20px;
+	height: 18px;
+	float: left;
+}
+.no{
+	padding-top: 5px;
+	font-size: 10px;
+	font-family: 微软雅黑;
+	color: red;
+	position: absolute;
+	left: 1000px;
+}
+.box{
+	width: 1200px;
+	height: 386px;
+	margin: 15px auto;
+	position: relative;
+	overflow: hidden;
+}
+.slider{
+	width: 8400px;
+	position: absolute;
+	left: -1200px;
+}
+.slide{
+	width: 1200px;
+	overflow: hidden;
+	float: left;
+}
+ .box>span{
+	display: black;
+	width: 30px;
+	height: 50px;
+	text-align: center;
+	cursor: pointer;
+	color: #fff;
+	top: 175px;
+	line-height: 50px;
+	background: rgb(255,0,0);
+	position: absolute;
+	opacity: 0;
+}
+#left{
+	left: 30px;
+}
+#right{
+	right: 30px;
+}
+.nav{
+	position: absolute;
+	left: 500px;
+	bottom: 20px;
+}
+.nav>li{
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: #ccc;
+	cursor: pointer;
+	margin: 0 10px;
+	border-radius: 50px;
+	text-align:center;
+	color: #000;
+}
+.nav .active{
+	color: #fff;
+	background: rgb(255,0,0); 
+} 
